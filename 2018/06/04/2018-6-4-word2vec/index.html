@@ -123,7 +123,7 @@
 <meta property="og:site_name" content="忧郁的大灰狼">
 <meta property="og:description" content="每一次读懂word2vec后，在一段时间后又将其原理忘掉，总是要找各种的资料、博客、文章等重新学习，于是我决定将它的原理以我读懂的方式写下来，以便于我以后快速复习。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-04T14:14:22.969Z">
+<meta property="og:updated_time" content="2018-06-04T14:48:30.177Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈word2vec原理">
 <meta name="twitter:description" content="每一次读懂word2vec后，在一段时间后又将其原理忘掉，总是要找各种的资料、博客、文章等重新学习，于是我决定将它的原理以我读懂的方式写下来，以便于我以后快速复习。">
@@ -358,7 +358,7 @@
                 
               
 
-              <time title="创建时间：2018-06-04 20:21:15 / 修改时间：22:14:22" itemprop="dateCreated datePublished" datetime="2018-06-04T20:21:15+08:00">2018-06-04</time>
+              <time title="创建时间：2018-06-04 20:21:15 / 修改时间：22:48:30" itemprop="dateCreated datePublished" datetime="2018-06-04T20:21:15+08:00">2018-06-04</time>
             
 
             
@@ -444,7 +444,7 @@
 </blockquote>
 <p>词向量表示方式就是上面的$f$,由于我们设计的模型不同,$f$也就千变万化，即词向量的嵌入方式类型多种多样。但是总体上可以分为两种：one-hot向量模型和word2vec模型。</p>
 <h4 id="One-hot-Model"><a href="#One-hot-Model" class="headerlink" title="One-hot Model"></a>One-hot Model</h4><p>One-hot model 由于模型构造简单，在传统的自然语言学习中常被用到。该模型将每一个词表示成维度等于词表大小的向量，在向量中的每一个维度对应此表中的词标签，表示某个词时，该词标签对应的维度数值为1，其他的维度数值为0。上文中的例1就是运用了one-hot model。<br>那么为什么我们不再使用one-hot model了呢？主要原因是one-hot model 表示的词向量带有的信息太少，并且随着语料中词语的增多会带来维度灾难。例2：将例1中词向量记为：$v_1 =[1,0,0]$，$v_2=[0,1,0]$和$v_3 =[1,0,0]$，那么显然，</p>
-<script type="math/tex; mode=display">v_{1}^{\top}v_2=0;$$ $$v_{2}^{\top}v_3=0;$$ $$v_{3}^{\top}v_1=0.</script><p>因此使用one-hot model会使得任意两个向量相互正交，致使它们之间的欧式距离或余弦相似度为零。</p>
+<script type="math/tex; mode=display">v_{1}^{\top}v_2=0;</script><script type="math/tex; mode=display">v_{2}^{\top}v_3=0;</script><script type="math/tex; mode=display">v_{3}^{\top}v_1=0.</script><p>因此使用one-hot model会使得任意两个向量相互正交，致使它们之间的欧式距离或余弦相似度为零。</p>
 <h4 id="Word2vec-Model"><a href="#Word2vec-Model" class="headerlink" title="Word2vec Model"></a>Word2vec Model</h4><p>准确的说word2vec是一种工具，它是是2013年有Google公司发表的word2vec工具。word2vec主要包括两种<strong>语言模型</strong>：跳字模型（skip-gram model）和连续词袋模型（continuous bag of words model，简称CBOW）。以及两种高效的<strong>训练方法</strong>：负采样（negative sampling）和层序softmax（hierarchical softmax）。</p>
 
       
@@ -944,6 +944,30 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 
