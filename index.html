@@ -358,7 +358,7 @@
                 
               
 
-              <time title="创建时间：2018-06-04 20:21:15 / 修改时间：22:03:11" itemprop="dateCreated datePublished" datetime="2018-06-04T20:21:15+08:00">2018-06-04</time>
+              <time title="创建时间：2018-06-04 20:21:15 / 修改时间：22:14:22" itemprop="dateCreated datePublished" datetime="2018-06-04T20:21:15+08:00">2018-06-04</time>
             
 
             
@@ -424,22 +424,14 @@
 
       
         
-          
-            <p>每一次读懂word2vec后，在一段时间后又将其原理忘掉，总是要找各种的资料、博客、文章等重新学习，于是我决定将它的原理以我读懂的方式写下来，以便于我以后快速复习。</p>
-<hr>
-<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p>在阐述word2vec之前，首先需要理解什么是词向量以及传统的词向量表示方法。</p>
-<blockquote>
-<p>在自然语言中所有的词均是字符等非数学化的，我们很难将它们直接应用到我们的模型之中，因此，我们需要一种方法，它能够帮助我们将词转化成可计算的数学表示。</p>
-</blockquote>
-<h3 id="词向量"><a href="#词向量" class="headerlink" title="词向量"></a>词向量</h3><p>自然语言处理中词向量表示过程可以简单地表述成将自然语言中的词映射到实数向量空间（real vector space）上，这里的映射就是词向量表示方法，而对应的实数向量就是词向量，例1：:将“我是词向量”中的词“我”、“是”、“词向量”分别映射成$[1,0,0]$、$[0,1,0]$、$[0,0,1]$。数学上表述成$v=f(w)\in R^k$其中$w$表示词，$v$表示词向量，$k$表示词向量的维度，$f$是词向量映射方法，通常称为词嵌入（Word Embedding）。显然上面的例子中词向量的维度是3。</p>
-<h3 id="词向量表示方式"><a href="#词向量表示方式" class="headerlink" title="词向量表示方式"></a>词向量表示方式</h3><blockquote>
-<p>这里我本打算使用学术文章中的通称词嵌入方式（Word Embedding Function），但是最后我决定还是使用词向量表示方式，因为它更加能够直接明了的说明我将要阐述的内容。</p>
-</blockquote>
-<p>词向量表示方式就是上面的$f$,由于我们设计的模型不同,$f$也就千变万化，即词向量的嵌入方式类型多种多样。但是总体上可以分为两种：one-hot向量模型和word2vec模型。</p>
-<h4 id="One-hot-Model"><a href="#One-hot-Model" class="headerlink" title="One-hot Model"></a>One-hot Model</h4><p>One-hot model 由于模型构造简单，在传统的自然语言学习中常被用到。该模型将每一个词表示成维度等于词表大小的向量，在向量中的每一个维度对应此表中的词标签，表示某个词时，该词标签对应的维度数值为1，其他的维度数值为0。上文中的例1就是运用了one-hot model。<br>那么为什么我们不再使用one-hot model了呢？主要原因是one-hot model 表示的词向量带有的信息太少，并且随着语料中词语的增多会带来维度灾难。例2：将例1中词向量记为：$v_1 =[1,0,0]$，$v_2=[0,1,0]$和$v_3 =[1,0,0]$，那么显然，<br>$$v_{1}^{\top}v_2=0;$$ $$v_{2}^{\top}v_3=0;$$ $$v_{3}^{\top}v_1=0.$$<br>因此使用one-hot model会使得任意两个向量相互正交，致使它们之间的欧式距离或余弦相似度为零。</p>
-<h4 id="Word2vec-Model"><a href="#Word2vec-Model" class="headerlink" title="Word2vec Model"></a>Word2vec Model</h4><p>准确的说word2vec是一种工具，它是是2013年有Google公司发表的word2vec工具。word2vec主要包括两种<strong>语言模型</strong>：跳字模型（skip-gram model）和连续词袋模型（continuous bag of words model，简称CBOW）</p>
-
-          
+          <p>每一次读懂word2vec后，在一段时间后又将其原理忘掉，总是要找各种的资料、博客、文章等重新学习，于是我决定将它的原理以我读懂的方式写下来，以便于我以后快速复习。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/04/2018-6-4-word2vec/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -969,7 +961,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共982字</span>
+  <span class="post-count">博客全站共1,004字</span>
 </div>
 
 
