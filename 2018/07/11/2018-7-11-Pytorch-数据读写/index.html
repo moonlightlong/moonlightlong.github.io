@@ -118,14 +118,14 @@
   <meta name="description" content="&amp;emsp;&amp;emsp;Pytorch有着自己的数据读写方式以及已有的数据API，本章主要介绍Pytorch的数据读取部分。">
 <meta name="keywords" content="Pytorch">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2018-7-11-Pytorch 数据读写">
+<meta property="og:title" content="Pytorch 数据读写">
 <meta property="og:url" content="http://yoursite.com/2018/07/11/2018-7-11-Pytorch-数据读写/index.html">
 <meta property="og:site_name" content="忧郁的大灰狼">
 <meta property="og:description" content="&amp;emsp;&amp;emsp;Pytorch有着自己的数据读写方式以及已有的数据API，本章主要介绍Pytorch的数据读取部分。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-11T03:10:36.351Z">
+<meta property="og:updated_time" content="2018-07-11T10:38:39.473Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2018-7-11-Pytorch 数据读写">
+<meta name="twitter:title" content="Pytorch 数据读写">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;Pytorch有着自己的数据读写方式以及已有的数据API，本章主要介绍Pytorch的数据读取部分。">
 
 
@@ -143,7 +143,7 @@
   };
 </script>
 
-  <title>2018-7-11-Pytorch 数据读写 | 忧郁的大灰狼</title>
+  <title>Pytorch 数据读写 | 忧郁的大灰狼</title>
   
 
 
@@ -333,7 +333,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">2018-7-11-Pytorch 数据读写
+          <h1 class="post-title" itemprop="name headline">Pytorch 数据读写
               
             
           </h1>
@@ -358,7 +358,7 @@
                 
               
 
-              <time title="创建时间：2018-07-11 10:42:21 / 修改时间：11:10:36" itemprop="dateCreated datePublished" datetime="2018-07-11T10:42:21+08:00">2018-07-11</time>
+              <time title="创建时间：2018-07-11 10:42:21 / 修改时间：18:38:39" itemprop="dateCreated datePublished" datetime="2018-07-11T10:42:21+08:00">2018-07-11</time>
             
 
             
@@ -436,8 +436,57 @@
         <p>&emsp;&emsp;Pytorch有着自己的数据读写方式以及已有的数据API，本章主要介绍Pytorch的数据读取部分。<br><a id="more"></a></p>
 <h2 id="Pytorch-数据集"><a href="#Pytorch-数据集" class="headerlink" title="Pytorch 数据集"></a>Pytorch 数据集</h2><h3 id="torchvison"><a href="#torchvison" class="headerlink" title="torchvison"></a>torchvison</h3><p>&emsp;&emsp;模块torchvision库包括了计算机视觉中的常见数据集，模型框架以及图像变化方法。这里只介绍数据集：<br>MNIST<br>Fashion-MNIST<br>COCO<br>LSUN<br>ImageFolder<br>Imagenet-12<br>CIFAR<br>STL10<br>SVHN<br>PhotoTour</p>
 <p>由于该模块的加载比较简单，本文不再做细致的讲解。</p>
-<h3 id="torchtext"><a href="#torchtext" class="headerlink" title="torchtext"></a>torchtext</h3><p>&emsp;&emsp;由自然语言值流行的数据集以及数据处理方法组成。其中的数据集有：<br>情感分析<br>SST<br>IMDB<br>问题分类<br>TREC<br>蕴含<br>SNLI<br>语言模型<br>wikitext<br>机器翻译<br>multi30k<br>IWSLT<br>WMT14</p>
+<h3 id="torchtext"><a href="#torchtext" class="headerlink" title="torchtext"></a>torchtext</h3><p>&emsp;&emsp;由自然语言值流行的数据集以及数据处理方法组成。其中的数据集有：<br><strong>情感分析</strong><br>SST<br>IMDB<br><strong>问题分类</strong><br>TREC<br><strong>蕴含</strong><br>SNLI<br><strong>语言模型</strong><br>wikitext<br><strong>机器翻译</strong><br>multi30k<br>IWSLT<br>WMT14</p>
+<blockquote>
+<p>安装spacy失败，因此没有使用过</p>
+<h3 id="自定义"><a href="#自定义" class="headerlink" title="自定义"></a>自定义</h3><p>在实际应用中很多的数据我们都是要进过自定义的预处理过程，因此更多的使用Pytorch提供的数据处理模块进行自定义文件的读取。</p>
+</blockquote>
+<p>Pytorch的数据读取主要包含三个类：<br>1.Dataset<br>2.DataLoader<br>3.DataLoaderIter</p>
+<h4 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h4><p>torch.utils.data.Dataset()<br>该类主要包含三个方法：</p>
+<ol>
+<li><strong>init</strong>()</li>
+<li><strong>getitem</strong>()</li>
+<li><strong>len</strong>()</li>
+</ol>
+<p>具体作用如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomDataset</span><span class="params">(data.Dataset)</span>:</span></span><br><span class="line">    <span class="comment"># 需要继承data.Dataset</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># TODO</span></span><br><span class="line">        <span class="comment"># 1. Initialize file path or list of file names.</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self, index)</span>:</span></span><br><span class="line">        <span class="comment"># TODO</span></span><br><span class="line">        <span class="comment"># 1. Read one data from file (e.g. using numpy.fromfile, PIL.Image.open).</span></span><br><span class="line">        <span class="comment"># 2. Preprocess the data (e.g. torchvision.Transform).</span></span><br><span class="line">        <span class="comment"># 3. Return a data pair (e.g. image and label).</span></span><br><span class="line">        <span class="comment"># 需要注意的是，第一步：read one data，是一个data</span></span><br><span class="line">        <span class="comment"># 返回的数据类型建议转化成nump类型或PIL.Image类型</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># You should change 0 to the total size of your dataset.</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<p>下面是官方MNIST的例子（代码已缩减）：<br>```python<br>class MNIST(data.Dataset):<br>    def <strong>init</strong>(self, root, train=True, transform=None, target_transform=None, download=False):<br>        self.root = root<br>        self.transform = transform<br>        self.target_transform = target_transform<br>        self.train = train  # training set or test set</p>
+<pre><code>    if download:
+        self.download()
 
+    if not self._check_exists():
+        raise RuntimeError(&#39;Dataset not found.&#39; +
+                           &#39; You can use download=True to download it&#39;)
+
+    if self.train:
+        self.train_data, self.train_labels = torch.load(
+            os.path.join(root, self.processed_folder, self.training_file))
+    else:
+        self.test_data, self.test_labels = torch.load(os.path.join(root, self.processed_folder, self.test_file))
+
+def __getitem__(self, index):
+    if self.train:
+        img, target = self.train_data[index], self.train_labels[index]
+    else:
+        img, target = self.test_data[index], self.test_labels[index]
+
+    # doing this so that it is consistent with all other datasets
+    # to return a PIL Image
+    img = Image.fromarray(img.numpy(), mode=&#39;L&#39;)
+
+    if self.transform is not None:
+        img = self.transform(img)
+
+    if self.target_transform is not None:
+        target = self.target_transform(target)
+
+    return img, target
+
+def __len__(self):
+    if self.train:
+        return 60000
+    else:
+        return 10000
+</code></pre>
       
     </div>
 
@@ -466,11 +515,11 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/07/11/2018-7-11-Pytorch-数据读写/">2018-7-11-Pytorch 数据读写</a></p>
+  <p><span>本文标题:</span><a href="/2018/07/11/2018-7-11-Pytorch-数据读写/">Pytorch 数据读写</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Yao Shuang-Long 的个人博客">Yao Shuang-Long</a></p>
   <p><span>发布时间:</span>2018年07月11日 - 10:07</p>
-  <p><span>最后更新:</span>2018年07月11日 - 11:07</p>
-  <p><span>原始链接:</span><a href="/2018/07/11/2018-7-11-Pytorch-数据读写/" title="2018-7-11-Pytorch 数据读写">http://yoursite.com/2018/07/11/2018-7-11-Pytorch-数据读写/</a>
+  <p><span>最后更新:</span>2018年07月11日 - 18:07</p>
+  <p><span>原始链接:</span><a href="/2018/07/11/2018-7-11-Pytorch-数据读写/" title="Pytorch 数据读写">http://yoursite.com/2018/07/11/2018-7-11-Pytorch-数据读写/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2018/07/11/2018-7-11-Pytorch-数据读写/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
@@ -720,7 +769,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pytorch-数据集"><span class="nav-number">1.</span> <span class="nav-text">Pytorch 数据集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#torchvison"><span class="nav-number">1.1.</span> <span class="nav-text">torchvison</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#torchtext"><span class="nav-number">1.2.</span> <span class="nav-text">torchtext</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pytorch-数据集"><span class="nav-number">1.</span> <span class="nav-text">Pytorch 数据集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#torchvison"><span class="nav-number">1.1.</span> <span class="nav-text">torchvison</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#torchtext"><span class="nav-number">1.2.</span> <span class="nav-text">torchtext</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义"><span class="nav-number">1.3.</span> <span class="nav-text">自定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Dataset"><span class="nav-number">1.3.1.</span> <span class="nav-text">Dataset</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -782,7 +831,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共3.6k字</span>
+  <span class="post-count">博客全站共4.1k字</span>
 </div>
 
 
